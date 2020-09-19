@@ -1,0 +1,95 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  .sideBar {
+    display: flex;
+    flex: 1;
+    width: 15%;
+    background-color: #eee1aa;
+    flex-direction: column;
+    align-items: center;
+    .sideBarLogo {
+      font-size: 5em;
+      margin-top: 30px;
+      background-color: #b3ddb4;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      border-radius: 20px;
+    }
+    .sideBarOptions {
+      display: flex;
+      flex-direction: column;
+      margin-top: 7vh;
+      :nth-child(1n) {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 2vh 0;
+        padding: 0 10px;
+        margin: 10;
+        font-size: 1.2em;
+        cursor: pointer;
+        &:active {
+          transform: scale(0.9);
+          transition: all 0.1s ease-in-out;
+        }
+        :first-child {
+          padding-right: 20px;
+        }
+      }
+    }
+  }
+  .mainContent {
+    padding-top: 4vh;
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    background-color: #f2d1a9;
+    width: 80%;
+    .header {
+      padding-left: 2vw;
+    }
+    .timeTableGrid {
+      display: flex;
+      flex-direction: column;
+      margin: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      .timeTableHead {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        :nth-child(1n) {
+          text-align: center;
+          background-color: #94c5a1;
+          width: 26vw;
+          padding: 6px 0;
+          margin-right: 10px;
+        }
+      }
+      &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background-color: #eee1aa;
+      }
+      &::-webkit-scrollbar {
+        width: 10px;
+        background-color: #f2d1a9;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #94c5a1;
+        background-image: -webkit-linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.2) 25%,
+          transparent 25%,
+          transparent 50%,
+          rgba(255, 255, 255, 0.2) 50%,
+          rgba(255, 255, 255, 0.2) 75%,
+          transparent 75%,
+          transparent
+        );
+      }
+    }
+  }
+}
