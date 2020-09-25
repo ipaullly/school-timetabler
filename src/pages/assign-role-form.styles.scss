@@ -1,0 +1,33 @@
+.assignRoleContainer{
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 0 10px;
+  > h5 {
+    padding: 0;
+  }
+  .MuiTextField-root{
+    .MuiInputLabel-formControl{
+      font-size: 0.9em;
+    }
+    .MuiInput-root{
+      .MuiInput-input{
+        font-size: 0.9em;
+      }
+    }
+  }
+  .roleSelectDropdown{
+    margin: 20px 0;
+    .MuiInputBase-root{
+      .MuiSelect-select{
+        font-size: 0.9em;
+      }
+      .MuiSelect-selectMenu{
+        min-width: 7.5vw;
+      }
+      .MuiSelect-nativeInput{
+        font-size: 0.8em;
+      }
+    }
+  }
+}

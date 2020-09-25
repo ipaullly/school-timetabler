@@ -1,19 +1,20 @@
 .container {
   display: flex;
   flex-direction: row;
+  background-color: #f2d1a9;
   height: 100%;
   .sideBar {
     display: flex;
     flex: 1;
-    width: 15%;
+    width: 10%;
     background-color: #eee1aa;
     flex-direction: column;
     align-items: center;
     .sideBarLogo {
-      font-size: 5em;
+      font-size: 4em;
       margin-top: 30px;
       background-color: #b3ddb4;
-      padding: 30px;
+      padding: 15px;
       display: flex;
       flex-direction: column;
       border-radius: 20px;
@@ -29,7 +30,7 @@
         margin: 2vh 0;
         padding: 0 10px;
         margin: 10;
-        font-size: 1.2em;
+        font-size: 1em;
         cursor: pointer;
         &:active {
           transform: scale(0.9);
@@ -46,10 +47,10 @@
     display: flex;
     height: auto;
     flex-direction: column;
-    background-color: #f2d1a9;
-    width: 80%;
+    width: 70%;
     .header {
       padding-left: 2vw;
+      margin: 1vh 0 2vh 0;
     }
     .timeTableGrid {
       display: flex;
@@ -57,17 +58,11 @@
       margin: 20px;
       box-sizing: border-box;
       overflow-y: auto;
-      .timeTableHead {
+      .spinner{
         display: flex;
-        flex-direction: row;
-        align-items: center;
-        :nth-child(1n) {
-          text-align: center;
-          background-color: #94c5a1;
-          width: 26vw;
-          padding: 6px 0;
-          margin-right: 10px;
-        }
+        justify-content: center;
+        align-self: center;
+        overflow: hidden;
       }
       &::-webkit-scrollbar-track {
         box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -89,6 +84,61 @@
           transparent 75%,
           transparent
         );
+      }
+    }
+    .createEvent{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: flex-end;
+      .button{
+        cursor: pointer;
+        padding: 20px 20px 20px 0;
+        font-size: 2rem;
+        &:active{
+          transform: scale(0.9);
+          transition: all 0.1s ease-in-out;
+        }
+      }
+    }
+  }
+  .actionBar{
+    display: flex;
+    flex: 1;
+    width: 20%;
+    flex-direction: column;
+    align-items: center;
+    .button{
+      background-color: #b3ddb4;
+      cursor: pointer;
+      padding: 15px;
+      margin: 10px 5px;
+      border-radius: 10px;
+      &:active{
+        transform: scale(0.9);
+        transition: all 0.1s ease-in-out;
+      }
+    }
+    .signOffHeader{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .calendarAccess{
+        background-color: purple;
+        color: white;
+        text-transform: uppercase;
+        padding: 5px 10px;
+        border-radius: 4px;
+        margin: 0 4vw 0 0;
+      }
+      .signOff{
+        font-size: 1.4rem;
+        padding: 15px;
+        margin: 3vh -1vw 2vh 0;
+        &:active{
+          transform: scale(0.9);
+          transition: all 0.1s ease-in-out;
+        }
       }
     }
   }
