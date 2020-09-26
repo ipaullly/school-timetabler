@@ -22,22 +22,14 @@
     .sideBarOptions {
       display: flex;
       flex-direction: column;
+      align-items: center;
       margin-top: 7vh;
-      :nth-child(1n) {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin: 2vh 0;
-        padding: 0 10px;
-        margin: 10;
-        font-size: 1em;
+      .calendarCard{
+        padding: 20px;
         cursor: pointer;
         &:active {
           transform: scale(0.9);
           transition: all 0.1s ease-in-out;
-        }
-        :first-child {
-          padding-right: 20px;
         }
       }
     }
@@ -51,11 +43,46 @@
     .header {
       padding-left: 2vw;
       margin: 1vh 0 2vh 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      .datePicker{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        .datePickerHeader{
+          margin-bottom: 1vh;
+        }
+        .datePickerSearch{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          .searchIcon{
+            background-color: black;
+            color: white;
+            font-size: 1.5em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6px;
+            border-radius: 50%;
+            margin: 0 0 0 2vw;
+          }
+        }
+      }
+      .calendarTitle{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        margin: 0 2vw 0 0;
+      }
     }
     .timeTableGrid {
       display: flex;
       flex-direction: column;
-      margin: 20px;
+      margin: 40px;
       box-sizing: border-box;
       overflow-y: auto;
       .spinner{

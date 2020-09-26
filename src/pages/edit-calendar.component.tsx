@@ -5,11 +5,9 @@ import {
   Fade,
   makeStyles,
   Modal,
-  TextField,
 } from "@material-ui/core";
 import * as yup from "yup";
-import { BsPlusCircleFill } from 'react-icons/bs'
-import { Formik, Form, useField } from "formik";
+import { Formik, Form } from "formik";
 import { CustomTextField } from "./assign-role-form.component";
 import { CustomTextAreaField } from "./create-event-modal.component";
 
@@ -18,8 +16,6 @@ const validationSchema = yup.object({
   description: yup.string().required(),
   location: yup.string().required(),
 });
-
-
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -55,9 +51,10 @@ interface IFormProps {
   currentSummary: string;
   currentDescription: string;
   currentLocation: string;
+  lessonId: string;
 }
 
-const UpdateEventModal: React.FC<IFormProps> = ({ updateEvent, currentDescription, currentLocation, currentSummary }) => {
+const UpdateEventModal: React.FC<IFormProps> = ({ updateEvent, currentDescription, currentLocation, currentSummary, lessonId }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -73,21 +70,7 @@ const UpdateEventModal: React.FC<IFormProps> = ({ updateEvent, currentDescriptio
       summary: data.summary,
       location: data.location,
       description: data.description,
-      start: {
-        dateTime: data.startDateTime, // 'dateTime': '2020-09-22T11:00:00-07:00',
-        timeZone: "Africa/Nairobi",
-      },
-      end: {
-        dateTime: data.endDateTime, // 'dateTime': '2020-09-22T11:00:00-07:00',
-        timeZone: "Africa/Nairobi",
-      },
-      reminders: {
-        useDefault: false,
-        overrides: [
-          { method: "email", minutes: 24 * 60 },
-          { method: "popup", minutes: 10 },
-        ],
-      },
+      id: lessonId,
     };
     return await updateEvent(newEvent);
   };
@@ -121,11 +104,9 @@ const UpdateEventModal: React.FC<IFormProps> = ({ updateEvent, currentDescriptio
               endDateTime: "",
             }}
             onSubmit={async (data, { setSubmitting }) => {
-              setSubmitting(true);
               const res = await handleEditEventSubmit(data);
+              setOpen(false);
               console.log(res, "Formik");
-
-              setSubmitting(false);
             }}
           >
             {({ values, isSubmitting }) => (

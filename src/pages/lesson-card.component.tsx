@@ -13,7 +13,6 @@ import UpdateEventModal from './edit-calendar.component';
 const useStyles = makeStyles((theme: Theme) => 
 createStyles({
   root: {
-    // minWidth: 275,
     margin: '10px 5px',
     backgroundColor: '#eee1aa'
   },
@@ -25,6 +24,7 @@ createStyles({
   },
   expand: {
     transform: 'rotate(0deg)',
+    padding: 0,
     marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
@@ -89,6 +89,7 @@ const LessonCard: React.FC<any> = ({ updateEvent,lesson }) => {
           currentDescription={lesson.description}
           currentLocation={lesson.location}
           currentSummary={lesson.summary}
+          lessonId={lesson.id}
         />
         </CardActions>
       </Collapse>

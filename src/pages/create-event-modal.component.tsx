@@ -12,12 +12,36 @@ import * as yup from "yup";
 import { BsPlusCircleFill } from 'react-icons/bs'
 import { Formik, Form, useField } from "formik";
 import { CustomTextField } from "./assign-role-form.component";
+import moment from "moment";
 
 const validationSchema = yup.object({
   summary: yup.string().required(),
   description: yup.string().required(),
   location: yup.string().required(),
 });
+
+export const CustomDateField: React.FC<any> = ({
+  placeholder,
+  label,
+  ...props
+}) => {
+  const [field, meta] = useField<{}>(props);
+  const errorText = meta.error && meta.touched ? meta.error : "";
+  return (
+    <TextField
+      placeholder={placeholder}
+      {...field}
+      helperText={errorText}
+      error={!!errorText}
+      variant="outlined"
+      label={label}
+      type="datetime-local"
+      InputLabelProps={{
+        shrink: true,
+      }}
+    />
+  );
+};
 
 export const CustomTextAreaField: React.FC<any> = ({
   placeholder,
@@ -58,9 +82,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     padding: "20px",
   },
-  inputField: {
-    margin: '20px 0'
-  }
+  textField: {
+    padding: 50
+  },
 }));
 
 interface IFormProps {
@@ -84,11 +108,11 @@ const CreateEventModal: React.FC<IFormProps> = ({ createNewEvent }) => {
       location: data.location,
       description: data.description,
       start: {
-        dateTime: data.startDateTime, // 'dateTime': '2020-09-22T11:00:00-07:00',
+        dateTime: moment.utc(data.startDateTime), // 'dateTime': '2020-09-22T11:00:00-07:00',
         timeZone: "Africa/Nairobi",
       },
       end: {
-        dateTime: data.endDateTime, // 'dateTime': '2020-09-22T11:00:00-07:00',
+        dateTime: moment.utc(data.endDateTime), // 'dateTime': '2020-09-22T11:00:00-07:00',
         timeZone: "Africa/Nairobi",
       },
       reminders: {
@@ -99,6 +123,7 @@ const CreateEventModal: React.FC<IFormProps> = ({ createNewEvent }) => {
         ],
       },
     };
+    
     return await createNewEvent(newEvent);
   };
 
@@ -132,12 +157,9 @@ const CreateEventModal: React.FC<IFormProps> = ({ createNewEvent }) => {
               startDateTime: "",
               endDateTime: "",
             }}
-            onSubmit={async (data, { setSubmitting }) => {
-              setSubmitting(true);
-              const res = await handleCreateEventSubmit(data);
-              console.log(res, "Formik");
-
-              setSubmitting(false);
+            onSubmit={async (data) => {
+              await handleCreateEventSubmit(data);
+              handleClose();
             }}
           >
             {({ values, isSubmitting }) => (
@@ -146,21 +168,34 @@ const CreateEventModal: React.FC<IFormProps> = ({ createNewEvent }) => {
                   placeholder="Summary"
                   name="summary"
                   label="Event Summary"
-                  className={classes.inputField}
+                  className={classes.textField}
                 />
                 <CustomTextAreaField
                   placeholder="Description"
                   name="description"
                   type="textarea"
                   label="Description"
-                  className={classes.inputField}
+                  className={classes.textField}
                 />
                 <CustomTextField
                   placeholder="Location"
                   name="location"
                   label="Location"
-                  className={classes.inputField}
+                  className={classes.textField}
                 />
+                <CustomDateField
+                  placeholder="start time"
+                  name="startDateTime"
+                  
+                  label="Start time"
+                />
+                <CustomDateField
+                  placeholder="start time"
+                  name="endDateTime"
+                  
+                  label="End time"
+                />
+    
                 <div>
                   <Button disabled={isSubmitting} type="submit">
                     Submit
