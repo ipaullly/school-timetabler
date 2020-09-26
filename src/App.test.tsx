@@ -4,6 +4,20 @@ import LessonCard from './pages/lesson-card.component';
 import moment from 'moment';
 import DatePicker from './pages/date-picker.component';
 import CreateEventModal from './pages/create-event-modal.component';
+import { windowGapi } from './window';
+import UpdateEventModal from './pages/edit-calendar.component';
+import AssignRoleForm from './pages/assign-role-form.component';
+import AddNewCalendar from './pages/add-new-calendar.component';
+
+// describe('Homepage gapi initialisation', () => {
+//   windowGapi = {};
+//   windowGapi.auth2.getAuthInstance = () => {isSignedIn : {get : () => true, listen : f => f()}};
+//   windowGapi.client.init = (v) => true;
+//   windowGapi.load = (a, f) => f();
+//   test('loaded gapi', () => {
+
+//   })
+// })
 
 describe('Components render', () => {
   test('renders lesson card', () => {
@@ -36,12 +50,44 @@ describe('Components render', () => {
       />
     )
   });
-  test('date picker rendered', () => {
+  test('Create event component', () => {
     const createNewEvent = jest.fn()
 
     render(
       <CreateEventModal 
         createNewEvent={createNewEvent}
+      />
+    )
+  });
+  test('Update modal', () => {
+    const updateEvent = jest.fn()
+    const currentSummary = 'asdhasd'
+    const currentDescription = 'ashbahsdb'
+    const currentLocation = 'asbdhabdj'
+    const lessonId = 'hbasbdjad'
+    render(
+      <UpdateEventModal
+        currentSummary={currentSummary}
+        updateEvent={updateEvent}
+        lessonId={lessonId}
+        currentLocation={currentLocation}
+        currentDescription={currentDescription}
+      />
+    )
+  });
+  test('Assign role form', () => {
+    const createAclEntry = jest.fn()
+    render(
+      <AssignRoleForm
+      createAclEntry={createAclEntry}
+      />
+    )
+  });
+  test('Assign role form', () => {
+    const createCalendarEntry = jest.fn()
+    render(
+      <AddNewCalendar
+        createCalendarEntry={createCalendarEntry}
       />
     )
   });
