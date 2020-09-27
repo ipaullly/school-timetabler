@@ -3,42 +3,42 @@ import * as yup from "yup";
 import { Formik, Form } from "formik";
 
 import "./assign-role-form.styles.scss";
-import {
-  Button
-} from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { CustomTextField } from "./assign-role-form.component";
 
 const validationSchema = yup.object({
   email: yup.string().email(),
 });
 
-interface IFormProps{
-  createCalendarEntry: (args: any) => any,
+interface IFormProps {
+  createCalendarEntry: (args: any) => any;
 }
 
 const AddNewCalendar: React.FC<IFormProps> = ({ createCalendarEntry }) => {
   const handleGenerateCalendarSubmit = async (data: any) => {
     const calendarEntry = {
-      'summary': data.calendarSummary,
-      'timeZone': "Africa/Nairobi",
-    }
+      summary: data.calendarSummary,
+      timeZone: "Africa/Nairobi",
+    };
     return await createCalendarEntry(calendarEntry);
   };
 
   return (
-    <div className="assignRoleContainer"
+    <div
+      className="assignRoleContainer"
       style={{
-        marginTop: '3vh'
+        marginTop: "3vh",
       }}
     >
-      <h5>Create New Calendar
-      <hr/>
+      <h5>
+        Create New Calendar
+        <hr />
       </h5>
       <Formik
         validateOnChange={true}
         validationSchema={validationSchema}
         initialValues={{
-          calendarSummary: ''
+          calendarSummary: "",
         }}
         onSubmit={async (data, { setSubmitting }) => {
           setSubmitting(true);
@@ -48,7 +48,13 @@ const AddNewCalendar: React.FC<IFormProps> = ({ createCalendarEntry }) => {
       >
         {({ values, isSubmitting }) => (
           <Form>
-            <CustomTextField placeholder="school timetable 2" name="calendarSummary" label='Enter Summary'/>
+            <CustomTextField
+              placeholder="school timetable 2"
+              name="calendarSummary"
+              label="Enter Summary"
+              id="new-calendar-summary"
+              helpTextId='new-calendar-summary-helper'
+            />
             <div>
               <Button disabled={isSubmitting} type="submit">
                 Generate

@@ -33,7 +33,8 @@
   "jest": {
     "coveragePathIgnorePatterns": [
       "src/serviceWorker.ts",
-      "src/index.tsx"
+      "src/index.tsx",
+      "src/customHooks/useGapi.ts"
     ]
   },
   "eslintConfig": {

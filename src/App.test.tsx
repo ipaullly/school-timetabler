@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import LessonCard from './pages/lesson-card.component';
 import moment from 'moment';
 import DatePicker from './pages/date-picker.component';
@@ -8,6 +8,7 @@ import { windowGapi } from './window';
 import UpdateEventModal from './pages/edit-calendar.component';
 import AssignRoleForm from './pages/assign-role-form.component';
 import AddNewCalendar from './pages/add-new-calendar.component';
+import { act } from 'react-dom/test-utils';
 
 // describe('Homepage gapi initialisation', () => {
 //   windowGapi = {};
@@ -83,12 +84,17 @@ describe('Components render', () => {
       />
     )
   });
-  test('Assign role form', () => {
+  test('Create calendar form', () => {
     const createCalendarEntry = jest.fn()
-    render(
+    const {getByLabelText, getByText } = render(
       <AddNewCalendar
         createCalendarEntry={createCalendarEntry}
       />
     )
+    const input = getByLabelText('Enter Summary');
+    fireEvent.change(input, { target: { value: 'Class T'} })
+    fireEvent.click(getByText('Generate'))
+  
+    // expect(createCalendarEntry).toBeCalledTimes(1)
   });
 })

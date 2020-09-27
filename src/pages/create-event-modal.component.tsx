@@ -3,6 +3,10 @@ import {
   Backdrop,
   Button,
   Fade,
+  FormControl,
+  FormHelperText,
+  Input,
+  InputLabel,
   makeStyles,
   Modal,
   TextField,
@@ -46,19 +50,18 @@ export const CustomDateField: React.FC<any> = ({
 export const CustomTextAreaField: React.FC<any> = ({
   placeholder,
   label,
+  id,
+  helpTextId,
   ...props
 }) => {
   const [field, meta] = useField<{}>(props);
   const errorText = meta.error && meta.touched ? meta.error : "";
   return (
-    <TextField
-      placeholder={placeholder}
-      {...field}
-      helperText={errorText}
-      error={!!errorText}
-      label={label}
-      multiline
-    />
+    <FormControl>
+      <InputLabel htmlFor={id}>{label}</InputLabel>
+      <Input {...field} placeholder={placeholder} id={id} aria-describedby={helpTextId} multiline error={!!errorText}/>
+      <FormHelperText id={helpTextId}>{errorText}</FormHelperText>
+    </FormControl>
   );
 };
 

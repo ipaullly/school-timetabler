@@ -59,3 +59,27 @@ code {
     }
   }
 }
+
+
+.makeStyles-modal-7{
+  .makeStyles-form-9{
+    .MuiFormControl-root{
+      padding: 10px;
+      // .MuiFormLabel-root{
+      //   margin: 0 0 0 1vw;
+      // }
+      .MuiInputBase-formControl{
+        margin: 5px;
+        min-width: 9vw;
+      }
+      .MuiButtonBase-root{
+        .MuiButton-label{
+          color: white;
+        }
+        .MuiTouchRipple-root{
+          background-color: black;
+        }
+      }
+    }
+  }
+}
