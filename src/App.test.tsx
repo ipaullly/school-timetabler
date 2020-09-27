@@ -4,19 +4,52 @@ import LessonCard from './pages/lesson-card.component';
 import moment from 'moment';
 import DatePicker from './pages/date-picker.component';
 import CreateEventModal from './pages/create-event-modal.component';
-import { windowGapi } from './window';
 import UpdateEventModal from './pages/edit-calendar.component';
 import AssignRoleForm from './pages/assign-role-form.component';
 import AddNewCalendar from './pages/add-new-calendar.component';
-import { act } from 'react-dom/test-utils';
+import HomePage from './pages/home-page.component';
+
+const { windowGapi } = require('./window')
+
+const loadGapi = () => {
+  return windowGapi.load('client:auth2', () => {})
+}
 
 // describe('Homepage gapi initialisation', () => {
-//   windowGapi = {};
-//   windowGapi.auth2.getAuthInstance = () => {isSignedIn : {get : () => true, listen : f => f()}};
-//   windowGapi.client.init = (v) => true;
-//   windowGapi.load = (a, f) => f();
-//   test('loaded gapi', () => {
+//   // windowGapi = {};
+//   // windowGapi.auth2.getAuthInstance = () => {
+//   //   isSignedIn : {
+//   //     get : () => true,
+//   //     listen : f => f()
+//   //   }
+//   // };
+//   // windowGapi.client.init = (v) => true;
+//   // windowGapi.load = (a, f) => f();
 
+//   test('loaded gapi', () => {
+//     jest.resetModules(); // to make sure that require will return a new module instance
+//     jest.mock("./window", () => ({ windowGapi: { load: (a: any, f: any) => f() } })); // mock whatever you want, even constants
+
+//     // tests
+//     const maps = loadGapi();
+
+//     // assertions
+//     expect(maps).toBeCalled()
+
+//     // cleanup
+//     jest.resetModules(); 
+//     // let testGapi = loadGapi();
+
+//     // const originalGapi = global.gapi;
+//     // testGapi.load = (a, f: any) => f()
+//     // testGapi.client.init = jest.fn().mockImplementation(() => Promise.resolve(true))
+//     // testGapi.auth2.getAuthInstance = jest.fn().mockImplementation(() => {
+//     //     isSignedIn: {
+//     //       get: jest.fn().mockImplementation(() => Promise.resolve(true)),
+//     //       listen:  jest.fn().mockImplementation((f) => f())
+//     //     }
+//     // });
+//     // testGapi = originalGapi;
 //   })
 // })
 

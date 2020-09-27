@@ -34,7 +34,10 @@
     "coveragePathIgnorePatterns": [
       "src/serviceWorker.ts",
       "src/index.tsx",
-      "src/customHooks/useGapi.ts"
+      "src/customHooks/useGapi.ts",
+      "src/pages/home-page.component.tsx",
+      "src/pages/create-event.component.tsx",
+      "src/app.tsx"
     ]
   },
   "eslintConfig": {
