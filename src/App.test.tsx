@@ -7,26 +7,52 @@ import CreateEventModal from './pages/create-event-modal.component';
 import UpdateEventModal from './pages/edit-calendar.component';
 import AssignRoleForm from './pages/assign-role-form.component';
 import AddNewCalendar from './pages/add-new-calendar.component';
-import HomePage from './pages/home-page.component';
 import CalendarTitle from './pages/calendar-title.component';
 
-const { windowGapi } = require('./window')
+// const { windowGapi } = require('./window')
 
-const loadGapi = () => {
-  return windowGapi.load('client:auth2', () => {})
-}
+// const loadGapi = () => {
+//   return windowGapi.load('client:auth2', () => {})
+// }
 
 // describe('Homepage gapi initialisation', () => {
-//   // windowGapi = {};
-//   // windowGapi.auth2.getAuthInstance = () => {
-//   //   isSignedIn : {
-//   //     get : () => true,
-//   //     listen : f => f()
-//   //   }
-//   // };
-//   // windowGapi.client.init = (v) => true;
-//   // windowGapi.load = (a, f) => f();
+  // windowGapi = {};
+  // windowGapi.auth2.getAuthInstance = () => {
+  //   isSignedIn : {
+  //     get : () => true,
+  //     listen : f => f()
+  //   }
+  // };
+  // windowGapi.client.init = (v) => true;
+  // windowGapi.load = (a, f) => f();
 
+  // test("window nested variables mocking", () => {
+  //   // setup
+  //   // without making a copy you will have a circular dependency problem during mocking
+  //   const originalWindow: any = { ...window };
+  //   const windowSpy = jest.spyOn(global, "window", "get");
+  //   windowSpy.mockImplementation(() => ({
+  //     ...originalWindow,
+  //     gapi: {
+  //       ...originalWindow.gapi,
+  //       load: jest.fn(),
+  //       client: {
+  //         ...originalWindow.client,
+  //         init: () => Promise.resolve(true)
+  //       }
+  //     },
+  //   }));
+  
+  //   // tests
+  //   await act(async () => {
+  //     render(<User id="123" />, container);
+  //   });
+  
+  //   // assertions
+  //   expect(mockedReplace).toBeCalledWith("http://my.test/page/next");
+  
+  //   // cleanup
+  //   windowSpy.mockRestore()
 //   test('loaded gapi', () => {
 //     jest.resetModules(); // to make sure that require will return a new module instance
 //     jest.mock("./window", () => ({ windowGapi: { load: (a: any, f: any) => f() } })); // mock whatever you want, even constants

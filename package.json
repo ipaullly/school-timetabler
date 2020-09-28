@@ -37,7 +37,8 @@
       "src/customHooks/useGapi.ts",
       "src/pages/home-page.component.tsx",
       "src/pages/create-event-modal.component.tsx",
-      "src/App.tsx"
+      "src/App.tsx",
+      "src/pages/edit-calendar.component.tsx" 
     ]
   },
   "eslintConfig": {
