@@ -8,6 +8,7 @@ This is a simple user interface where teachers and students can access class tim
 
 The application can be accessed via the link below preferably using Chrome:
 - [School-Timetabler App](https://school-timetabler.netlify.app/)
+
 Access the video demo for the application via the link below:
 - [School-Timetabler Video Demo](https://youtu.be/AFHImkzVKN8)
 
