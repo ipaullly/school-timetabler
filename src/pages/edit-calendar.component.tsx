@@ -93,7 +93,7 @@ const UpdateEventModal: React.FC<IFormProps> = ({ updateEvent, deleteEvent, curr
   return (
     <div className="createEvent">
       <div className="button" onClick={() => handleOpen()}>
-        <Button className={classes.customButton} size="small">update lesson</Button>
+        <Button className={classes.customButton} size="small">more actions</Button>
       </div>
       <Modal
         aria-labelledby="transition-modal-title"
