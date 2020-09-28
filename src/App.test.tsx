@@ -9,11 +9,11 @@ import AssignRoleForm from './pages/assign-role-form.component';
 import AddNewCalendar from './pages/add-new-calendar.component';
 import CalendarTitle from './pages/calendar-title.component';
 
-// const { windowGapi } = require('./window')
+const { windowGapi } = require('./window')
 
-// const loadGapi = () => {
-//   return windowGapi.load('client:auth2', () => {})
-// }
+const loadGapi = () => {
+  return windowGapi.load('client:auth2', () => {})
+}
 
 // describe('Homepage gapi initialisation', () => {
   // windowGapi = {};
