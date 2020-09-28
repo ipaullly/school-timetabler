@@ -66,6 +66,18 @@ export const CustomTextAreaField: React.FC<any> = ({
 };
 
 const useStyles = makeStyles((theme) => ({
+  form: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(3),
+      width: '25ch',
+    },
+    backgroundColor: theme.palette.background.paper,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "20px",
+  },
   modal: {
     display: "flex",
     alignItems: "center",
@@ -76,14 +88,6 @@ const useStyles = makeStyles((theme) => ({
     border: "1px dashed #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-  },
-  form: {
-    backgroundColor: theme.palette.background.paper,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "20px",
   },
   textField: {
     padding: 50
@@ -106,16 +110,18 @@ const CreateEventModal: React.FC<IFormProps> = ({ createNewEvent }) => {
   };
 
   const handleCreateEventSubmit = async (data: any) => {
+    console.log( moment(data.startDateTime).format(), 'committee crap');
+    console.log( moment(data.endDateTime).format(), 'committee crap');
     const newEvent = {
       summary: data.summary,
       location: data.location,
       description: data.description,
       start: {
-        dateTime: moment.utc(data.startDateTime), // 'dateTime': '2020-09-22T11:00:00-07:00',
+        dateTime: moment(data.startDateTime).format(), // 'dateTime': '2020-09-22T11:00:00-07:00',
         timeZone: "Africa/Nairobi",
       },
       end: {
-        dateTime: moment.utc(data.endDateTime), // 'dateTime': '2020-09-22T11:00:00-07:00',
+        dateTime: moment(data.endDateTime).format(), // 'dateTime': '2020-09-22T11:00:00-07:00',
         timeZone: "Africa/Nairobi",
       },
       reminders: {

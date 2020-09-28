@@ -5,16 +5,17 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
-import { Collapse, IconButton } from '@material-ui/core';
-import clsx from 'clsx';
-import { MdExpandMore } from 'react-icons/md'
 import UpdateEventModal from './edit-calendar.component';
 
 const useStyles = makeStyles((theme: Theme) => 
 createStyles({
   root: {
     margin: '10px 5px',
-    backgroundColor: '#eee1aa'
+    backgroundColor: '#eee1aa',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between'
   },
   title: {
     fontSize: 13,
@@ -30,69 +31,64 @@ createStyles({
       duration: theme.transitions.duration.shortest,
     }),
   },
+  content: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '60%'
+  },
+  time:{
+    marginTop: '2vh',
+    fontSize: '5em'
+  },
   expandOpen: {
     transform: 'rotate(180deg)',
   },
   customButton: {
     backgroundColor: 'black',
-    color: 'white'
+    color: 'skyblue'
   }
   })
 );
 
-const LessonCard: React.FC<any> = ({ updateEvent,lesson }) => {
+const LessonCard: React.FC<any> = ({ updateEvent,lesson, accessRole, deleteEvent }) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
   
   return (
     <Card className={classes.root} variant="outlined">
-      <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          {lesson.location}
-        </Typography>
-        <Typography variant="h4" component="h2">
-          {lesson.summary}
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          {moment(lesson.start.dateTime).format("[Starts] hh:mm a")}
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          {moment(lesson.end.dateTime).format("[Ends] hh:mm a")}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <MdExpandMore />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Lesson Description:</Typography>
+      <CardContent className={classes.content}>
+        <div>
+          <Typography className={classes.title} color="textSecondary" gutterBottom>
+            {lesson.location}
+          </Typography>
+          <Typography variant="h4" component="h2">
+            {lesson.summary}
+          </Typography>
+          <Typography variant='caption'>Lesson Description:</Typography>
           <Typography variant="body2">
             {lesson.description}
           </Typography>
-        </CardContent>
-        <CardActions>
-        <UpdateEventModal 
+        </div>
+        <div className={classes.time}>
+          <Typography className={classes.pos} variant="body1" color="textSecondary">
+            {moment(lesson.start.dateTime).format("[Starts] hh:mm a")}
+          </Typography>
+          <Typography className={classes.pos} variant="body1" color="textSecondary">
+            {moment(lesson.end.dateTime).format("[Ends] hh:mm a")}
+          </Typography>
+        </div>
+      </CardContent>
+      <CardActions>
+        {accessRole === 'owner'? (<UpdateEventModal 
           updateEvent={updateEvent}
+          deleteEvent={deleteEvent}
           currentDescription={lesson.description}
           currentLocation={lesson.location}
           currentSummary={lesson.summary}
           lessonId={lesson.id}
-        />
-        </CardActions>
-      </Collapse>
+        />): null}
+      
+      </CardActions>
     </Card>
   );
 }

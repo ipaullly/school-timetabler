@@ -43,18 +43,28 @@ const useStyles = makeStyles((theme) => ({
   customButton: {
     backgroundColor: 'black',
     color: 'white'
+  },
+  buttons: {
+    '& > *': {
+      margin: theme.spacing(2),
+    },
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   }
 }));
 
 interface IFormProps {
   updateEvent: (args: any) => any;
+  deleteEvent: (args: any) => any;
   currentSummary: string;
   currentDescription: string;
   currentLocation: string;
   lessonId: string;
 }
 
-const UpdateEventModal: React.FC<IFormProps> = ({ updateEvent, currentDescription, currentLocation, currentSummary, lessonId }) => {
+const UpdateEventModal: React.FC<IFormProps> = ({ updateEvent, deleteEvent, currentDescription, currentLocation, currentSummary, lessonId }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -74,6 +84,11 @@ const UpdateEventModal: React.FC<IFormProps> = ({ updateEvent, currentDescriptio
     };
     return await updateEvent(newEvent);
   };
+
+  const handleDeleteEvent = async () => {
+    await deleteEvent(lessonId)
+    setOpen(false);
+  }
 
   return (
     <div className="createEvent">
@@ -130,9 +145,12 @@ const UpdateEventModal: React.FC<IFormProps> = ({ updateEvent, currentDescriptio
                   label="Location"
                   className={classes.inputField}
                 />
-                <div>
-                  <Button disabled={isSubmitting} type="submit">
-                    Submit
+                <div className={classes.buttons}>
+                  <Button disabled={isSubmitting} type="submit" style={{ backgroundColor: 'black', color: 'white'}}>
+                    Update Lesson Details
+                  </Button>
+                  <Button variant="contained" color="secondary" onClick={() => handleDeleteEvent()}>
+                    Delete Lesson
                   </Button>
                 </div>
               </Form>

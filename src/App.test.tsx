@@ -8,6 +8,7 @@ import UpdateEventModal from './pages/edit-calendar.component';
 import AssignRoleForm from './pages/assign-role-form.component';
 import AddNewCalendar from './pages/add-new-calendar.component';
 import HomePage from './pages/home-page.component';
+import CalendarTitle from './pages/calendar-title.component';
 
 const { windowGapi } = require('./window')
 
@@ -95,6 +96,7 @@ describe('Components render', () => {
   });
   test('Update modal', () => {
     const updateEvent = jest.fn()
+    const deleteEvent = jest.fn()
     const currentSummary = 'asdhasd'
     const currentDescription = 'ashbahsdb'
     const currentLocation = 'asbdhabdj'
@@ -103,6 +105,7 @@ describe('Components render', () => {
       <UpdateEventModal
         currentSummary={currentSummary}
         updateEvent={updateEvent}
+        deleteEvent={deleteEvent}
         lessonId={lessonId}
         currentLocation={currentLocation}
         currentDescription={currentDescription}
@@ -130,4 +133,19 @@ describe('Components render', () => {
   
     // expect(createCalendarEntry).toBeCalledTimes(1)
   });
+  test('Calendar Title render', () => {
+    const calendarSummary=''
+    const calendarDescription=''
+    const deleteCalendar=''
+    const accessRole = jest.fn()
+    render(
+      <CalendarTitle 
+      calendarSummary={calendarSummary}
+      calendarDescription={calendarDescription}
+      deleteCalendar={deleteCalendar}
+      accessRole={accessRole}
+      />
+    )
+  });
+
 })

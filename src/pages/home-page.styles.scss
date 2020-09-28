@@ -1,171 +1,211 @@
 .container {
-  display: flex;
-  flex-direction: row;
   background-color: #f2d1a9;
   height: 100%;
-  .sideBar {
+  .loadContainer{
     display: flex;
-    flex: 1;
-    width: 10%;
+    flex-direction: row;
+    background-color: #f2d1a9;
+    height: 100%;
+    .sideBar {
+      display: flex;
+      flex: 1;
+      width: 10%;
+      background-color: #eee1aa;
+      flex-direction: column;
+      align-items: center;
+      .sideBarLogo {
+        font-size: 4em;
+        margin-top: 30px;
+        background-color: #b3ddb4;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 20px;
+      }
+      .sideBarOptions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 7vh;
+        .calendarCard{
+          padding: 20px;
+          cursor: pointer;
+          &:active {
+            transform: scale(0.9);
+            transition: all 0.1s ease-in-out;
+          }
+        }
+      }
+    }
+    .mainContent {
+      padding-top: 4vh;
+      display: flex;
+      height: auto;
+      flex-direction: column;
+      width: 70%;
+      .header {
+        padding-left: 2vw;
+        margin: 1vh 0 2vh 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        .datePicker{
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+          .datePickerHeader{
+            margin-bottom: 1vh;
+          }
+          .datePickerSearch{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            .searchIcon{
+              background-color: black;
+              color: white;
+              font-size: 1.5em;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              padding: 6px;
+              border-radius: 50%;
+              margin: 0 0 0 2vw;
+            }
+          }
+        }
+        .calendarTitle{
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          margin: 0 2vw 0 0;
+        }
+      }
+      .timeTableGrid {
+        display: flex;
+        flex-direction: column;
+        margin: 40px;
+        box-sizing: border-box;
+        overflow-y: auto;
+        min-height: 60%;
+        .emptyCalendar{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .spinner{
+          text-align: center;
+          overflow-y: hidden;
+          overflow-x: hidden;
+        }
+        &::-webkit-scrollbar-track {
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          background-color: #eee1aa;
+        }
+        &::-webkit-scrollbar {
+          width: 10px;
+          background-color: #f2d1a9;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: #94c5a1;
+          background-image: -webkit-linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.2) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.2) 75%,
+            transparent 75%,
+            transparent
+          );
+        }
+      }
+      .createEvent{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-end;
+        .button{
+          cursor: pointer;
+          padding: 20px 20px 20px 0;
+          font-size: 2rem;
+          &:active{
+            transform: scale(0.9);
+            transition: all 0.1s ease-in-out;
+          }
+        }
+      }
+    }
+    .actionBar{
+      display: flex;
+      flex: 1;
+      width: 20%;
+      flex-direction: column;
+      align-items: center;
+      .gapiNotLoading{
+        padding: 2vh 5px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        background-color: rgb(233, 143, 40);
+        border-radius: 7px;
+        margin: 10px 5px;
+        transition: all 0.1s ease-in-out;
+      }
+      .signOffHeader{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .calendarAccess{
+          background-color: purple;
+          color: white;
+          text-transform: uppercase;
+          padding: 5px 10px;
+          border-radius: 4px;
+          margin: 0 4vw 0 0;
+        }
+        .signOff{
+          font-size: 1.4rem;
+          padding: 15px;
+          margin: 3vh -1vw 2vh 0;
+          &:active{
+            transform: scale(0.9);
+            transition: all 0.1s ease-in-out;
+          }
+        }
+      }
+    }
+    transition: all 0.2s ease-in;
+  }
+  .login{
+    z-index: 100;
     background-color: #eee1aa;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     .sideBarLogo {
       font-size: 4em;
-      margin-top: 30px;
+      margin-bottom: 30px;
       background-color: #b3ddb4;
       padding: 15px;
       display: flex;
       flex-direction: column;
       border-radius: 20px;
     }
-    .sideBarOptions {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 7vh;
-      .calendarCard{
-        padding: 20px;
-        cursor: pointer;
-        &:active {
-          transform: scale(0.9);
-          transition: all 0.1s ease-in-out;
-        }
-      }
-    }
-  }
-  .mainContent {
-    padding-top: 4vh;
-    display: flex;
-    height: auto;
-    flex-direction: column;
-    width: 70%;
-    .header {
-      padding-left: 2vw;
-      margin: 1vh 0 2vh 0;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      .datePicker{
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        .datePickerHeader{
-          margin-bottom: 1vh;
-        }
-        .datePickerSearch{
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
-          .searchIcon{
-            background-color: black;
-            color: white;
-            font-size: 1.5em;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 6px;
-            border-radius: 50%;
-            margin: 0 0 0 2vw;
-          }
-        }
-      }
-      .calendarTitle{
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        margin: 0 2vw 0 0;
-      }
-    }
-    .timeTableGrid {
-      display: flex;
-      flex-direction: column;
-      margin: 40px;
-      box-sizing: border-box;
-      overflow-y: auto;
-      .spinner{
-        display: flex;
-        justify-content: center;
-        align-self: center;
-        overflow: hidden;
-      }
-      &::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-        background-color: #eee1aa;
-      }
-      &::-webkit-scrollbar {
-        width: 10px;
-        background-color: #f2d1a9;
-      }
-      &::-webkit-scrollbar-thumb {
-        background-color: #94c5a1;
-        background-image: -webkit-linear-gradient(
-          45deg,
-          rgba(255, 255, 255, 0.2) 25%,
-          transparent 25%,
-          transparent 50%,
-          rgba(255, 255, 255, 0.2) 50%,
-          rgba(255, 255, 255, 0.2) 75%,
-          transparent 75%,
-          transparent
-        );
-      }
-    }
-    .createEvent{
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      align-items: flex-end;
-      .button{
-        cursor: pointer;
-        padding: 20px 20px 20px 0;
-        font-size: 2rem;
-        &:active{
-          transform: scale(0.9);
-          transition: all 0.1s ease-in-out;
-        }
-      }
-    }
-  }
-  .actionBar{
-    display: flex;
-    flex: 1;
-    width: 20%;
-    flex-direction: column;
-    align-items: center;
     .button{
-      background-color: #b3ddb4;
+      background-color: black;
       cursor: pointer;
+      color: white;
       padding: 15px;
       margin: 10px 5px;
-      border-radius: 10px;
+      border-radius: 5px;
       &:active{
         transform: scale(0.9);
         transition: all 0.1s ease-in-out;
-      }
-    }
-    .signOffHeader{
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      .calendarAccess{
-        background-color: purple;
-        color: white;
-        text-transform: uppercase;
-        padding: 5px 10px;
-        border-radius: 4px;
-        margin: 0 4vw 0 0;
-      }
-      .signOff{
-        font-size: 1.4rem;
-        padding: 15px;
-        margin: 3vh -1vw 2vh 0;
-        &:active{
-          transform: scale(0.9);
-          transition: all 0.1s ease-in-out;
-        }
       }
     }
   }
