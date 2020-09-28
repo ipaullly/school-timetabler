@@ -339,7 +339,9 @@ const HomePage: React.FC = () => {
               )}
             </div>
             {lessons ? (
-              <CreateEventModal createNewEvent={createNewEvent} />
+              accessRole === 'owner' || accessRole === 'writer'? (
+                <CreateEventModal createNewEvent={createNewEvent} />
+              ): null
             ) : null}
           </div>
           <div className="actionBar">
